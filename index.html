@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title> STUDIO — Wedding & Aerial Photography, Chennai</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@200;300;400;500;600&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f8f7f4;
+  --bg2:#f2f0ec;
+  --card:#eceae5;
+  --white:#ffffff;
+  --ink:#0f0e0c;
+  --ink2:#1e1c18;
+  --grey:#6b6860;
+  --light-grey:#b0ada8;
+  --border:rgba(15,14,12,.09);
+  --gold:#a8792c;
+  --gold-light:#c9952e;
+  --gold-pale:rgba(168,121,44,.1);
+  --gold-border:rgba(168,121,44,.3);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Outfit',sans-serif;font-weight:300;
+  overflow-x:hidden;cursor:none;
+}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* ─── CURSOR ─── */
+#c,#cr{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#c{width:8px;height:8px;background:var(--gold)}
+#cr{width:36px;height:36px;border:1px solid rgba(168,121,44,.4);transition:width .3s,height .3s}
+body:has(a:hover) #cr,body:has(button:hover) #cr{width:52px;height:52px}
+
+/* ─── LOADER ─── */
+#loader{
+  position:fixed;inset:0;background:var(--bg);z-index:10000;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+}
+.loader-logo{
+  font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:.22em;
+  color:var(--ink);opacity:0;animation:fadeUp .6s .3s forwards;
+}
+.loader-logo span{color:var(--gold)}
+.loader-bar-wrap{width:180px;height:1px;background:var(--card);overflow:hidden;opacity:0;animation:fadeUp .5s .6s forwards}
+.loader-bar{height:1px;background:var(--gold);width:0;animation:loadBar 1.8s .8s ease-out forwards}
+@keyframes loadBar{to{width:100%}}
+.loader-text{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--light-grey);opacity:0;animation:fadeUp .5s .7s forwards}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;inset:0 0 auto;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:30px 64px;
+  transition:all .4s;
+}
+nav.solid{
+  padding:16px 64px;
+  background:rgba(248,247,244,.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 1px 40px rgba(0,0,0,.04);
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;font-size:1.4rem;
+  letter-spacing:.12em;color:var(--ink);text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+}
+.logo-mark{
+  width:26px;height:26px;border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.logo-mark::after{content:'';position:absolute;width:10px;height:10px;background:var(--gold);opacity:.4}
+.nav-links{display:flex;gap:44px;list-style:none}
+.nav-links a{
+  font-size:.72rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--grey);text-decoration:none;transition:color .3s;position:relative;
+}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-phone{font-size:.72rem;letter-spacing:.08em;color:var(--light-grey)}
+.nav-book{
+  font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  background:var(--gold);color:var(--white);padding:11px 28px;text-decoration:none;
+  transition:transform .3s,box-shadow .3s,background .3s;
+}
+.nav-book:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(168,121,44,.25)}
+
+/* ─── HERO ─── */
+.hero{
+  height:100vh;position:relative;display:flex;flex-direction:column;overflow:hidden;
+}
+.hero-bar-top,.hero-bar-bot{position:absolute;left:0;right:0;height:56px;background:var(--bg);z-index:3}
+.hero-bar-top{top:0}
+.hero-bar-bot{bottom:0}
+.hero-photo{
+  position:absolute;
+  inset:56px;
+  background:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+} 
+.hero-photo::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(to right,rgba(248,247,244,.75) 0%,transparent 35%,transparent 65%,rgba(248,247,244,.5) 100%),
+    linear-gradient(to top,rgba(248,247,244,.92) 0%,transparent 45%);
+}
+.hero-photo-hint{
+  position:relative;z-index:1;text-align:center;
+  color:rgba(168,121,44,.35);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:20px;
+}
+.drone-float{animation:droneFloat 5s ease-in-out infinite}
+@keyframes droneFloat{0%,100%{transform:translate(0,0)}25%{transform:translate(8px,-10px)}75%{transform:translate(-6px,6px)}}
+.hero-vignette{
+  position:absolute;inset:56px;z-index:2;pointer-events:none;
+  background:radial-gradient(ellipse 65% 65% at 60% 40%,transparent 30%,rgba(248,247,244,.35) 100%);
+}
+/* subtle texture */
+.hero-texture{
+  position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.25;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* hero text */
+.hero-content{
+  position:absolute;inset:56px 0 56px;z-index:5;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 64px 64px;
+}
+.hero-eyebrow{
+  font-size:.63rem;font-weight:400;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+  display:flex;align-items:center;gap:14px;
+  opacity:0;animation:fadeUp .8s .3s forwards;
+}
+.hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--gold)}
+.hero-h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem,10vw,11rem);
+  line-height:.88;letter-spacing:.02em;color:var(--ink);
+  opacity:0;animation:fadeUp .9s .5s forwards;
+}
+.hero-h1 .line2{
+  color:transparent;-webkit-text-stroke:1px rgba(15,14,12,.2);display:block;
+}
+.hero-h1 .line3{color:var(--gold);display:block}
+.hero-bottom{
+  display:flex;justify-content:space-between;align-items:flex-end;margin-top:40px;
+  opacity:0;animation:fadeUp .8s .8s forwards;
+}
+.hero-desc{max-width:460px;font-size:.92rem;line-height:1.85;color:var(--grey)}
+.hero-ctas{display:flex;gap:14px;align-items:center;flex-shrink:0}
+.cta-primary{
+  background:var(--gold);color:var(--white);
+  font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  padding:16px 44px;text-decoration:none;
+  transition:transform .3s,box-shadow .3s,background .3s;white-space:nowrap;display:inline-block;
+}
+.cta-primary:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:0 12px 36px rgba(168,121,44,.22)}
+.cta-secondary{
+  font-size:.7rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--grey);text-decoration:none;padding:16px 32px;
+  border:1px solid var(--border);transition:border-color .3s,color .3s;white-space:nowrap;
+}
+.cta-secondary:hover{border-color:var(--gold-border);color:var(--ink)}
+
+/* badge */
+.hero-badge{
+  position:absolute;right:130px;top:120px;z-index:6;
+  width:100px;height:100px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;
+  border:1px solid var(--gold-border);
+  background:rgba(248,247,244,.8);backdrop-filter:blur(12px);
+  box-shadow:0 4px 24px rgba(0,0,0,.06);
+  opacity:0;animation:fadeIn 1s 1.2s forwards;
+}
+.badge-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--gold);line-height:1}
+.badge-text{font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);line-height:1.4}
+
+/* scroll indicator */
+.hero-scroll{
+  position:absolute;right:64px;top:50%;transform:translateY(-50%);z-index:6;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  opacity:0;animation:fadeIn .8s 1.5s forwards;
+}
+.scroll-text{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--light-grey);writing-mode:vertical-rl}
+.scroll-line{width:1px;height:56px;background:var(--card);overflow:hidden;position:relative}
+.scroll-line::after{content:'';position:absolute;top:-100%;width:1px;height:100%;background:var(--gold);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%{top:-100%}100%{top:100%}}
+
+/* ─── MARQUEE ─── */
+.marquee-wrap{
+  overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:17px 0;background:var(--white);
+}
+.marquee{display:flex;white-space:nowrap;animation:marqueeScroll 26s linear infinite}
+.marquee-item{
+  font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.15em;
+  color:var(--light-grey);padding:0 36px;
+  display:inline-flex;align-items:center;gap:36px;transition:color .3s;
+}
+.marquee-item .sep{color:var(--gold)}
+@keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── STATS ─── */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid var(--border);
+  background:var(--white);
+}
+.stat{
+  padding:52px 48px;border-right:1px solid var(--border);
+  transition:background .3s;
+}
+.stat:last-child{border-right:none}
+.stat:hover{background:rgba(168,121,44,.03)}
+.stat-n{
+  font-family:'Bebas Neue',sans-serif;font-size:4rem;
+  color:var(--ink);line-height:1;display:flex;align-items:baseline;gap:3px;
+}
+.stat-n em{font-style:normal;font-size:2rem;color:var(--gold)}
+.stat-l{font-size:.68rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);margin-top:10px}
+.stat-desc{font-size:.76rem;color:var(--light-grey);margin-top:5px}
+
+/* ─── SECTION COMMONS ─── */
+.sec{padding:130px 64px}
+.sec-label{
+  font-size:.62rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px;
+}
+.sec-label::before{content:'';width:26px;height:1px;background:var(--gold)}
+.sec-title{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5vw,5.5rem);
+  line-height:.92;letter-spacing:.02em;color:var(--ink);
+}
+.sec-title .ghost{-webkit-text-stroke:1.5px var(--card);color:transparent}
+.r{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.r.on{opacity:1;transform:none}
+.r.d1{transition-delay:.1s}.r.d2{transition-delay:.2s}.r.d3{transition-delay:.3s}.r.d4{transition-delay:.4s}
+
+/* ─── WORK ─── */
+#work.sec{padding-bottom:0}
+.work-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px}
+/* Featured card */
+.work-featured{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--border);
+  margin:0 -64px;
+}
+.wf-visual{
+  position:relative;
+  height:600px;
+  overflow:hidden;
+  background:url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.wf-visual::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,transparent 50%,rgba(242,240,236,.95) 100%);
+}
+.wf-ph{opacity:.15;position:relative;z-index:1}
+.wf-meta{
+  padding:80px 64px;background:var(--bg2);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.wf-num{font-family:'Bebas Neue',sans-serif;font-size:8rem;color:rgba(168,121,44,.06);line-height:1}
+.wf-tag{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.wf-title{
+  font-family:'Cormorant',serif;font-size:3rem;font-weight:300;
+  color:var(--ink);line-height:1.1;margin-bottom:20px;
+}
+.wf-title em{font-style:italic;color:var(--gold)}
+.wf-desc{font-size:.88rem;line-height:1.88;color:var(--grey);margin-bottom:32px;max-width:400px}
+.wf-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.chip{
+  font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--border);color:var(--grey);padding:6px 14px;background:var(--white);
+}
+/* Work grid */
+.work-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--border);margin:0 -64px;
+}
+.wcard{
+  position:relative;overflow:hidden;cursor:none;
+  aspect-ratio:3/4;background:var(--card);
+  border-right:1px solid var(--border);
+}
+.wcard:nth-child(3n){border-right:none}
+.wcard-bg{
+  width:100%;height:100%;
+  transition:transform .8s cubic-bezier(.25,.46,.45,.94);
+  display:flex;align-items:center;justify-content:center;
+}
+.wcard:nth-child(1) .wcard-bg{
+  background:url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;
+}
+
+.wcard:nth-child(2) .wcard-bg{
+  background:url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;
+}
+
+.wcard:nth-child(3) .wcard-bg{
+  background:url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;
+}
+
+.wcard:nth-child(4) .wcard-bg{
+  background:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;
+}
+
+.wcard:nth-child(5) .wcard-bg{
+  background:url('https://images.unsplash.com/photo-1507504031003-b417219a0fde?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;
+}
+
+.wcard:nth-child(6) .wcard-bg{
+  background:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;
+}
+.wcard:hover .wcard-bg{transform:scale(1.07)}
+.wcard-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(15,14,12,.85) 0%,rgba(15,14,12,.2) 45%,transparent 100%);
+  opacity:0;transition:opacity .5s;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:28px;
+}
+.wcard:hover .wcard-overlay{opacity:1}
+.wcard-cat{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.wcard-title{font-family:'Cormorant',serif;font-size:1.5rem;font-weight:300;font-style:italic;color:var(--white)}
+.wcard-loc{font-size:.7rem;color:rgba(255,255,255,.55);margin-top:4px}
+.wcard-drone-tag{
+  position:absolute;top:14px;right:14px;
+  font-size:.55rem;letter-spacing:.13em;text-transform:uppercase;
+  background:rgba(248,247,244,.9);border:1px solid var(--gold-border);
+  color:var(--gold);padding:4px 10px;
+  opacity:0;transition:opacity .4s;backdrop-filter:blur(6px);
+}
+.wcard:hover .wcard-drone-tag{opacity:1}
+.wcard-ph{opacity:.12}
+
+/* ─── SERVICES ─── */
+#services{background:var(--white)}
+.services-layout{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+.services-left{position:sticky;top:120px}
+.services-left .sec-title{margin-bottom:24px}
+.services-left p{font-size:.9rem;line-height:1.9;color:var(--grey);margin-bottom:32px}
+.services-grid{display:flex;flex-direction:column;gap:2px}
+.scard{
+  padding:34px 40px;background:var(--bg);
+  border-left:3px solid transparent;
+  display:grid;grid-template-columns:56px 1fr auto;
+  align-items:center;gap:28px;
+  transition:border-color .3s,background .3s;
+}
+.scard:hover{border-left-color:var(--gold);background:rgba(168,121,44,.03)}
+.scard-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:rgba(168,121,44,.2);line-height:1}
+.scard-title{font-size:1rem;font-weight:500;color:var(--ink);margin-bottom:5px}
+.scard-desc{font-size:.82rem;line-height:1.7;color:var(--grey)}
+.scard-price{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);white-space:nowrap}
+
+/* ─── ABOUT ─── */
+#about{background:var(--bg)}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:center}
+.about-visual-stack{position:relative;height:680px}
+.av1{
+  position:absolute;
+  right:0;
+  top:0;
+  width:74%;
+  height:76%;
+  background:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  box-shadow:0 8px 48px rgba(0,0,0,.08);
+}
+.av1::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:.5;animation:scanLine 4s linear infinite;
+}
+@keyframes scanLine{0%{top:0}100%{top:100%}}
+.av2{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:50%;
+  height:48%;
+  background:url('https://images.unsplash.com/photo-1525258946800-98cfd641d0de?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 24px rgba(0,0,0,.06);
+}
+.av-chip{
+  position:absolute;bottom:60px;right:-28px;z-index:3;
+  background:var(--gold);padding:20px 24px;
+  display:flex;flex-direction:column;align-items:center;
+  box-shadow:0 8px 32px rgba(168,121,44,.3);
+}
+.av-chip-n{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--white);line-height:1}
+.av-chip-t{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);line-height:1.5}
+.about-copy p{font-size:.92rem;line-height:1.95;color:var(--grey);margin-bottom:18px}
+.pull-quote{
+  font-family:'Cormorant',serif;font-size:1.45rem;font-weight:300;font-style:italic;
+  color:var(--ink);line-height:1.55;
+  padding:26px 0 26px 26px;border-left:2px solid var(--gold);margin:32px 0;
+}
+.about-specs{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0}
+.spec-tag{
+  font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--border);color:var(--grey);
+  padding:8px 16px;background:var(--white);
+}
+
+/* ─── PROCESS ─── */
+#process{background:var(--white)}
+.process-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:64px}
+.pstep{
+  padding:52px 48px;background:var(--bg);position:relative;overflow:hidden;transition:background .3s;
+}
+.pstep:hover{background:rgba(168,121,44,.03)}
+.pstep::before{
+  content:attr(data-n);
+  font-family:'Bebas Neue',sans-serif;font-size:8rem;
+  color:rgba(168,121,44,.06);
+  position:absolute;top:-10px;right:20px;line-height:1;
+}
+.pstep-icon{
+  width:46px;height:46px;border:1px solid var(--gold-border);
+  display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:26px;
+}
+.pstep-title{font-size:1.08rem;font-weight:500;color:var(--ink);margin-bottom:12px}
+.pstep-desc{font-size:.85rem;line-height:1.88;color:var(--grey)}
+.pstep-timeline{
+  margin-top:20px;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);border-top:1px solid var(--border);padding-top:16px;
+}
+
+/* ─── TESTIMONIALS ─── */
+#testimonials{background:var(--bg2)}
+.testi-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.tcard{
+  padding:44px 40px;background:var(--white);
+  border-top:2px solid transparent;transition:border-color .3s,transform .4s,box-shadow .3s;
+}
+.tcard:hover{border-top-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 48px rgba(0,0,0,.06)}
+.tcard-stars{color:var(--gold);letter-spacing:5px;font-size:.8rem;margin-bottom:18px}
+.tcard-text{
+  font-family:'Cormorant',serif;font-size:1.1rem;font-weight:300;font-style:italic;
+  color:var(--ink2);line-height:1.75;margin-bottom:28px;
+}
+.tcard-who{display:flex;align-items:center;gap:14px}
+.tcard-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--bg2);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:.9rem;color:var(--gold);flex-shrink:0;
+}
+.tcard-name{font-size:.75rem;font-weight:500;letter-spacing:.08em;color:var(--ink)}
+.tcard-event{font-size:.68rem;color:var(--light-grey);margin-top:2px}
+
+/* ─── PACKAGES ─── */
+#packages{background:var(--bg)}
+.pkg-head{margin-bottom:64px}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.pkg{
+  padding:52px 44px;background:var(--white);
+  position:relative;transition:transform .4s,box-shadow .3s;
+  border:1px solid var(--border);
+}
+.pkg:hover{transform:translateY(-6px);box-shadow:0 16px 60px rgba(0,0,0,.08)}
+.pkg.featured{
+  background:var(--gold);border-color:var(--gold);
+}
+.pkg.featured .pkg-price,.pkg.featured .pkg-name,.pkg.featured .pkg-tagline{color:var(--white)}
+.pkg.featured .pkg-price-note,.pkg.featured .pkg-list li{color:rgba(255,255,255,.7)}
+.pkg.featured .pkg-list li::before{color:var(--white)}
+.pkg.featured .pkg-divider{background:rgba(255,255,255,.2)}
+.pkg.featured .pkg-cta{background:var(--white);color:var(--gold)}
+.pkg.featured .pkg-cta:hover{background:var(--bg);color:var(--gold)}
+.pkg-badge{
+  position:absolute;top:22px;right:22px;
+  font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;
+  background:var(--bg2);color:var(--gold);padding:4px 10px;
+}
+.pkg.featured .pkg-badge{background:rgba(255,255,255,.2);color:var(--white)}
+.pkg-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.08em;color:var(--ink);margin-bottom:6px}
+.pkg-tagline{font-size:.78rem;color:var(--grey);margin-bottom:28px}
+.pkg-price{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--gold);line-height:1;margin-bottom:4px}
+.pkg-price-note{font-size:.7rem;color:var(--light-grey);margin-bottom:28px}
+.pkg-divider{height:1px;background:var(--border);margin-bottom:26px}
+.pkg-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.pkg-list li{font-size:.84rem;color:var(--grey);display:flex;align-items:flex-start;gap:10px}
+.pkg-list li::before{content:'✓';color:var(--gold);font-weight:500;flex-shrink:0}
+.pkg-cta{
+  display:block;text-align:center;text-decoration:none;
+  font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  padding:14px 32px;background:var(--gold);color:var(--white);
+  transition:transform .3s,box-shadow .3s,background .3s;
+}
+.pkg-cta:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(168,121,44,.22)}
+
+/* ─── CONTACT ─── */
+#contact{background:var(--white)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:100px}
+.contact-left .sec-title{margin-bottom:44px}
+.c-items{display:flex;flex-direction:column;gap:24px;margin-bottom:44px}
+.c-item{display:flex;gap:16px;align-items:flex-start}
+.c-ic{
+  width:40px;height:40px;border:1px solid var(--gold-border);
+  display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;
+}
+.c-lbl{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--light-grey);margin-bottom:4px}
+.c-val{font-size:.95rem;font-weight:400;color:var(--ink)}
+.social-row{display:flex;gap:10px}
+.soc{
+  width:40px;height:40px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--grey);text-decoration:none;font-size:.7rem;font-weight:500;
+  transition:border-color .3s,color .3s,background .3s;
+}
+.soc:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-pale)}
+/* form */
+.cform{display:flex;flex-direction:column;gap:16px}
+.cform-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg{display:flex;flex-direction:column;gap:7px}
+.flbl{font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--grey)}
+.fi,.fsel,.fta{
+  background:var(--bg);border:1px solid var(--border);
+  color:var(--ink);font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:300;
+  padding:13px 18px;outline:none;transition:border-color .3s;width:100%;border-radius:0;
+}
+.fi::placeholder,.fta::placeholder{color:var(--light-grey)}
+.fi:focus,.fsel:focus,.fta:focus{border-color:var(--gold-border)}
+.fsel{appearance:none;cursor:none}
+.fta{min-height:120px;resize:vertical}
+.fsub{
+  background:var(--gold);color:var(--white);border:none;
+  font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;
+  letter-spacing:.25em;text-transform:uppercase;
+  padding:18px 44px;cursor:none;align-self:flex-start;
+  transition:transform .3s,box-shadow .3s,background .3s;
+}
+.fsub:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:0 12px 36px rgba(168,121,44,.22)}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--ink);
+  padding:72px 64px 40px;
+}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px}
+.foot-logo-big{
+  font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.1em;
+  color:var(--white);margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.fldb{width:7px;height:7px;background:var(--gold)}
+.foot-brand p{font-size:.82rem;line-height:1.8;color:rgba(255,255,255,.35);margin-bottom:24px;max-width:280px}
+.foot-social{display:flex;gap:10px}
+.foot-soc{
+  width:36px;height:36px;border:1px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.35);text-decoration:none;font-size:.7rem;font-weight:500;
+  transition:border-color .3s,color .3s;
+}
+.foot-soc:hover{border-color:var(--gold);color:var(--gold)}
+.foot-col h4{
+  font-size:.63rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:20px;
+}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.foot-col ul a{
+  font-size:.82rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .3s;
+}
+.foot-col ul a:hover{color:var(--gold)}
+.foot-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid rgba(255,255,255,.07);padding-top:28px;
+  font-size:.67rem;color:rgba(255,255,255,.2);
+}
+.foot-bottom span:last-child{font-family:'Cormorant',serif;font-style:italic;color:rgba(255,255,255,.15)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body>
+
+<div id="c"></div>
+<div id="cr"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">VANNAM DIGITALS <span>STUDIO</span></div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  <div class="loader-text">Loading your story…</div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo"><div class="logo-mark"></div>VANNAM DIGITALS STUDIO</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-phone">+91 98765 43210</span>
+    <a href="#contact" class="nav-book">Book Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bar-top"></div>
+  <div class="hero-bar-bot"></div>
+  <div class="hero-photo">
+  </div>
+  <div class="hero-vignette"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-badge">
+    <div class="badge-num">600+</div>
+    <div class="badge-text">Weddings<br>Captured</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Wedding &amp; Aerial Photography · Chennai</div>
+    <h1 class="hero-h1">
+      WE TELL<br>
+      <span class="line2">YOUR</span>
+      <span class="line3">STORY.</span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">Vannam Digital Studio — premium wedding photography &amp; cinematic drone coverage across Tamil Nadu and beyond. We don't just photograph weddings. We build legacies.</p>
+      <div class="hero-ctas">
+        <a href="#work" class="cta-primary">View Our Work</a>
+        <a href="#contact" class="cta-secondary">Book a Date</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Scroll</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <div class="marquee-item">Wedding Photography <span class="sep">✦</span></div>
+    <div class="marquee-item">Drone Cinematography <span class="sep">✦</span></div>
+    <div class="marquee-item">Pre-Wedding Shoots <span class="sep">✦</span></div>
+    <div class="marquee-item">Live Streaming <span class="sep">✦</span></div>
+    <div class="marquee-item">Photo Albums <span class="sep">✦</span></div>
+    <div class="marquee-item">Candid Photography <span class="sep">✦</span></div>
+    <div class="marquee-item">Engagement Shoots <span class="sep">✦</span></div>
+    <div class="marquee-item">4K Aerial Video <span class="sep">✦</span></div>
+    <div class="marquee-item">Wedding Photography <span class="sep">✦</span></div>
+    <div class="marquee-item">Drone Cinematography <span class="sep">✦</span></div>
+    <div class="marquee-item">Pre-Wedding Shoots <span class="sep">✦</span></div>
+    <div class="marquee-item">Live Streaming <span class="sep">✦</span></div>
+    <div class="marquee-item">Photo Albums <span class="sep">✦</span></div>
+    <div class="marquee-item">Candid Photography <span class="sep">✦</span></div>
+    <div class="marquee-item">Engagement Shoots <span class="sep">✦</span></div>
+    <div class="marquee-item">4K Aerial Video <span class="sep">✦</span></div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat r"><div class="stat-n"><span id="s1">0</span><em>+</em></div><div class="stat-l">Weddings Covered</div><div class="stat-desc">Across Tamil Nadu &amp; beyond</div></div>
+  <div class="stat r d1"><div class="stat-n"><span id="s2">0</span><em>+</em></div><div class="stat-l">Hours of Footage</div><div class="stat-desc">Aerial + ground combined</div></div>
+  <div class="stat r d2"><div class="stat-n"><span id="s3">0</span><em>M</em></div><div class="stat-l">Max Altitude</div><div class="stat-desc">DJI Mavic 3 Pro certified</div></div>
+  <div class="stat r d3"><div class="stat-n"><span id="s4">0</span><em>%</em></div><div class="stat-l">Client Satisfaction</div><div class="stat-desc">Based on post-shoot reviews</div></div>
+</div>
+
+<!-- WORK -->
+<section id="work" class="sec">
+  <div class="work-head r">
+    <div><div class="sec-label">Our Portfolio</div><h2 class="sec-title">SELECTED <span class="ghost">WORK</span></h2></div>
+    <a href="#contact" class="cta-secondary">Book Your Date →</a>
+  </div>
+  <div class="work-featured r">
+    <div class="wf-visual">
+      <svg class="wf-ph" width="80" height="80" viewBox="0 0 120 72" fill="none">
+        <line x1="60" y1="36" x2="16" y2="16" stroke="#a8792c" stroke-width="1.2"/><line x1="60" y1="36" x2="104" y2="16" stroke="#a8792c" stroke-width="1.2"/>
+        <line x1="60" y1="36" x2="16" y2="56" stroke="#a8792c" stroke-width="1.2"/><line x1="60" y1="36" x2="104" y2="56" stroke="#a8792c" stroke-width="1.2"/>
+        <circle cx="16" cy="16" r="8" stroke="#a8792c" stroke-width="1.2" fill="none"/>
+        <circle cx="104" cy="16" r="8" stroke="#a8792c" stroke-width="1.2" fill="none"/>
+        <circle cx="16" cy="56" r="8" stroke="#a8792c" stroke-width="1.2" fill="none"/>
+        <circle cx="104" cy="56" r="8" stroke="#a8792c" stroke-width="1.2" fill="none"/>
+        <rect x="48" y="28" width="24" height="16" rx="3" stroke="#a8792c" stroke-width="1.2"/>
+      </svg>
+    </div>
+    <div class="wf-meta">
+      <div class="wf-num">01</div>
+      <div class="wf-tag">Featured Wedding · Drone + Ground</div>
+      <h3 class="wf-title">Priya &amp; Arjun<br><em>Ooty Hill Station</em></h3>
+      <p class="wf-desc">A 3-day Tamil Brahmin wedding across the Nilgiris. We flew at 150M to capture the mandap surrounded by misty peaks — a shot that made the entire family cry.</p>
+      <div class="wf-chips">
+        <span class="chip">Full Day Coverage</span>
+        <span class="chip">Drone 4K</span>
+        <span class="chip">Photo Album</span>
+        <span class="chip">Live Stream</span>
+      </div>
+      <a href="#contact" class="cta-primary" style="display:inline-block">Enquire Now</a>
+    </div>
+  </div>
+  <div class="work-grid r">
+    <div class="wcard"><div class="wcard-bg"><svg class="wcard-ph" width="44" height="44" viewBox="0 0 80 80" fill="none"><rect x="8" y="16" width="64" height="48" rx="4" stroke="#a8792c" stroke-width="1.2"/><circle cx="40" cy="40" r="12" stroke="#a8792c" stroke-width="1.2"/><circle cx="40" cy="40" r="4" fill="#a8792c" opacity=".3"/></svg></div><div class="wcard-overlay"><p class="wcard-cat">Beach Wedding</p><p class="wcard-title">Meera &amp; Kiran</p><p class="wcard-loc">Rameswaram, Tamil Nadu</p></div><div class="wcard-drone-tag">🚁 Drone 4K</div></div>
+    <div class="wcard"><div class="wcard-bg"><svg class="wcard-ph" width="44" height="44" viewBox="0 0 80 80" fill="none"><rect x="8" y="16" width="64" height="48" rx="4" stroke="#a8792c" stroke-width="1.2"/><circle cx="40" cy="40" r="12" stroke="#a8792c" stroke-width="1.2"/></svg></div><div class="wcard-overlay"><p class="wcard-cat">Pre-Wedding Shoot</p><p class="wcard-title">Kavitha &amp; Raj</p><p class="wcard-loc">Kodaikanal, Tamil Nadu</p></div><div class="wcard-drone-tag">📷 Candid</div></div>
+    <div class="wcard"><div class="wcard-bg"><svg class="wcard-ph" width="44" height="44" viewBox="0 0 80 80" fill="none"><rect x="8" y="16" width="64" height="48" rx="4" stroke="#a8792c" stroke-width="1.2"/><circle cx="40" cy="40" r="12" stroke="#a8792c" stroke-width="1.2"/></svg></div><div class="wcard-overlay"><p class="wcard-cat">Temple Ceremony</p><p class="wcard-title">Divya &amp; Suresh</p><p class="wcard-loc">Madurai, Tamil Nadu</p></div><div class="wcard-drone-tag">🚁 Aerial</div></div>
+    <div class="wcard"><div class="wcard-bg"><svg class="wcard-ph" width="44" height="44" viewBox="0 0 80 80" fill="none"><rect x="8" y="16" width="64" height="48" rx="4" stroke="#a8792c" stroke-width="1.2"/><circle cx="40" cy="40" r="12" stroke="#a8792c" stroke-width="1.2"/></svg></div><div class="wcard-overlay"><p class="wcard-cat">Reception Night</p><p class="wcard-title">Ananya &amp; Vikram</p><p class="wcard-loc">Chennai, Tamil Nadu</p></div><div class="wcard-drone-tag">🎞 Cinematic</div></div>
+    <div class="wcard"><div class="wcard-bg"><svg class="wcard-ph" width="44" height="44" viewBox="0 0 80 80" fill="none"><rect x="8" y="16" width="64" height="48" rx="4" stroke="#a8792c" stroke-width="1.2"/><circle cx="40" cy="40" r="12" stroke="#a8792c" stroke-width="1.2"/></svg></div><div class="wcard-overlay"><p class="wcard-cat">Palace Wedding</p><p class="wcard-title">Nithya &amp; Santhosh</p><p class="wcard-loc">Thanjavur, Tamil Nadu</p></div><div class="wcard-drone-tag">🚁 Drone 4K</div></div>
+    <div class="wcard"><div class="wcard-bg"><svg class="wcard-ph" width="44" height="44" viewBox="0 0 80 80" fill="none"><rect x="8" y="16" width="64" height="48" rx="4" stroke="#a8792c" stroke-width="1.2"/><circle cx="40" cy="40" r="12" stroke="#a8792c" stroke-width="1.2"/></svg></div><div class="wcard-overlay"><p class="wcard-cat">Betrothal</p><p class="wcard-title">Lakshmi &amp; Arun</p><p class="wcard-loc">Coimbatore, Tamil Nadu</p></div><div class="wcard-drone-tag">📷 Candid</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="sec">
+  <div class="services-layout">
+    <div class="services-left r">
+      <div class="sec-label">Services</div>
+      <h2 class="sec-title">WHAT WE<br><span class="ghost">OFFER</span></h2>
+      <p>From intimate candid moments to sweeping aerial panoramas — we cover every dimension of your wedding day with professional equipment and a sharp creative eye.</p>
+      <a href="#packages" class="cta-primary">See Packages</a>
+    </div>
+    <div class="services-grid r">
+      <div class="scard"><div class="scard-num">01</div><div class="scard-body"><div class="scard-title">Wedding Photography</div><div class="scard-desc">Full day candid + traditional coverage. Two photographers, every key moment.</div></div><div class="scard-price">₹35K+</div></div>
+      <div class="scard"><div class="scard-num">02</div><div class="scard-body"><div class="scard-title">Drone Cinematography</div><div class="scard-desc">Licensed DJI Mavic 3 Pro aerial footage. 4K RAW, cinematic colour grade.</div></div><div class="scard-price">₹20K+</div></div>
+      <div class="scard"><div class="scard-num">03</div><div class="scard-body"><div class="scard-title">Cinematic Video</div><div class="scard-desc">4K highlight film with soundtrack. Full ceremony + reception edit.</div></div><div class="scard-price">₹40K+</div></div>
+      <div class="scard"><div class="scard-num">04</div><div class="scard-body"><div class="scard-title">Pre-Wedding Shoot</div><div class="scard-desc">Outdoor/indoor concept session. 2–3 hours, curated locations across TN.</div></div><div class="scard-price">₹15K+</div></div>
+      <div class="scard"><div class="scard-num">05</div><div class="scard-body"><div class="scard-title">Live Streaming</div><div class="scard-desc">HD multi-camera live stream for family abroad. Up to 10,000 viewers.</div></div><div class="scard-price">₹12K+</div></div>
+      <div class="scard"><div class="scard-num">06</div><div class="scard-body"><div class="scard-title">Heirloom Photo Album</div><div class="scard-desc">Premium lay-flat Fujifilm album. Hand-designed, professionally printed.</div></div><div class="scard-price">₹18K+</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="about-layout">
+    <div class="about-visual-stack r">
+      <div class="av1">
+        <svg width="70" height="70" viewBox="0 0 120 72" fill="none" style="opacity:.18;position:relative;z-index:1">
+          <line x1="60" y1="36" x2="16" y2="16" stroke="#a8792c" stroke-width="1.5"/>
+          <line x1="60" y1="36" x2="104" y2="16" stroke="#a8792c" stroke-width="1.5"/>
+          <line x1="60" y1="36" x2="16" y2="56" stroke="#a8792c" stroke-width="1.5"/>
+          <line x1="60" y1="36" x2="104" y2="56" stroke="#a8792c" stroke-width="1.5"/>
+          <circle cx="16" cy="16" r="9" stroke="#a8792c" stroke-width="1.2" fill="none"/>
+          <circle cx="104" cy="16" r="9" stroke="#a8792c" stroke-width="1.2" fill="none"/>
+          <circle cx="16" cy="56" r="9" stroke="#a8792c" stroke-width="1.2" fill="none"/>
+          <circle cx="104" cy="56" r="9" stroke="#a8792c" stroke-width="1.2" fill="none"/>
+          <rect x="48" y="28" width="24" height="16" rx="3" stroke="#a8792c" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="av2">
+        <svg width="36" height="36" viewBox="0 0 80 80" fill="none" style="opacity:.14">
+          <rect x="8" y="16" width="64" height="48" rx="4" stroke="#a8792c" stroke-width="1.2"/>
+          <circle cx="40" cy="40" r="12" stroke="#a8792c" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="av-chip">
+        <div class="av-chip-n">8+</div>
+        <div class="av-chip-t">Years<br>of Art</div>
+      </div>
+    </div>
+    <div class="about-copy r">
+      <div class="sec-label">About Vannam Digital Studio</div>
+      <h2 class="sec-title" style="margin-bottom:24px">WE SEE<br><span class="ghost">IT ALL.</span></h2>
+      <p>Vannam Digital Studio was born in Chennai with one belief — every wedding deserves to be seen in full. Not just the rituals. The emotions. The scale. The quiet moments between the loud ones.</p>
+      <p>We combine documentary-style candid photography with licensed drone cinematography to give you something no single photographer can: the full story of your day, from every height.</p>
+      <blockquote class="pull-quote">"Your wedding has a shape that only reveals itself from 150 metres up. We'll show you what it looks like."</blockquote>
+      <div class="about-specs">
+        <span class="spec-tag">DJI Mavic 3 Pro</span>
+        <span class="spec-tag">Sony A7 IV</span>
+        <span class="spec-tag">4K / 60fps</span>
+        <span class="spec-tag">Licensed Drone Pilot</span>
+        <span class="spec-tag">DGCA Certified</span>
+        <span class="spec-tag">Tamil Nadu Based</span>
+      </div>
+      <a href="#contact" class="cta-primary">Work With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="sec">
+  <div class="r">
+    <div class="sec-label">How It Works</div>
+    <h2 class="sec-title">THE <span class="ghost">PROCESS</span></h2>
+  </div>
+  <div class="process-grid">
+    <div class="pstep r" data-n="01">
+      <div class="pstep-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <div class="pstep-title">Discovery Call</div>
+      <p class="pstep-desc">We learn your vision, venue, family size, and key moments. We also check drone airspace permissions for your location before committing.</p>
+      <div class="pstep-timeline">Week 1 · Free Consultation</div>
+    </div>
+    <div class="pstep r d1" data-n="02">
+      <div class="pstep-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div class="pstep-title">Venue Survey & Planning</div>
+      <p class="pstep-desc">We scout your venue, map drone flight paths, plan optimal light windows, and create a minute-by-minute shot plan tailored to your ceremony.</p>
+      <div class="pstep-timeline">2–4 Weeks Before Wedding</div>
+    </div>
+    <div class="pstep r d2" data-n="03">
+      <div class="pstep-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+      <div class="pstep-title">Wedding Day Coverage</div>
+      <p class="pstep-desc">Two-person minimum team. Drone pilot + ground photographer. We arrive 60 minutes early, stay until the last dance, and miss absolutely nothing.</p>
+      <div class="pstep-timeline">Your Big Day</div>
+    </div>
+    <div class="pstep r d3" data-n="04">
+      <div class="pstep-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="pstep-title">Edit, Grade & Deliver</div>
+      <p class="pstep-desc">Premium colour grade, full aerial + ground edit. Private gallery delivered in 4–6 weeks. Heirloom album hand-designed and printed on request.</p>
+      <div class="pstep-timeline">4–6 Weeks After Wedding</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="sec">
+  <div class="testi-head r">
+    <div><div class="sec-label">Reviews</div><h2 class="sec-title">COUPLES <span class="ghost">SPEAK</span></h2></div>
+  </div>
+  <div class="testi-grid">
+    <div class="tcard r">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"The aerial shot of our mandap from 150 metres — 400 guests in a circle below — I had no idea how beautiful it looked from up there. That one shot made the whole album."</p>
+      <div class="tcard-who"><div class="tcard-avatar">PA</div><div><div class="tcard-name">Priya &amp; Arjun S.</div><div class="tcard-event">Destination Wedding, Ooty</div></div></div>
+    </div>
+    <div class="tcard r d1">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"Vannam Digital Studio is not just a studio — it's a brand. The 4K edit of our beach ceremony had every family member calling us in tears. Professional from first call to delivery."</p>
+      <div class="tcard-who"><div class="tcard-avatar">MK</div><div><div class="tcard-name">Meera &amp; Kiran R.</div><div class="tcard-event">Beach Wedding, Rameswaram</div></div></div>
+    </div>
+    <div class="tcard r d2">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"We compared 8 studios. Vannam Digital Studio was the only one who showed us a real drone reel. The final album and highlight film felt like a Bollywood production. Absolutely stunning."</p>
+      <div class="tcard-who"><div class="tcard-avatar">AS</div><div><div class="tcard-name">Ananya &amp; Santhosh P.</div><div class="tcard-event">Palace Wedding, Thanjavur</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages" class="sec">
+  <div class="pkg-head r">
+    <div class="sec-label">Pricing</div>
+    <h2 class="sec-title">OUR <span class="ghost">PACKAGES</span></h2>
+  </div>
+  <div class="pkg-grid r">
+    <div class="pkg">
+      <div class="pkg-name">Silver</div>
+      <div class="pkg-tagline">Perfect for intimate weddings</div>
+      <div class="pkg-price">₹35,000</div>
+      <div class="pkg-price-note">Starting price · Customisable</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li>1 Photographer (Full Day)</li>
+        <li>600+ Edited Photos</li>
+        <li>Private Online Gallery</li>
+        <li>14-Day Turnaround</li>
+        <li>1 Free Revision Round</li>
+      </ul>
+      <a href="#contact" class="pkg-cta">Book Silver</a>
+    </div>
+    <div class="pkg featured">
+      <div class="pkg-badge">Most Popular</div>
+      <div class="pkg-name">Gold</div>
+      <div class="pkg-tagline">The complete wedding experience</div>
+      <div class="pkg-price">₹75,000</div>
+      <div class="pkg-price-note">Starting price · Customisable</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li>2 Photographers (Full Day)</li>
+        <li>Drone 4K Aerial Coverage</li>
+        <li>1200+ Edited Photos</li>
+        <li>4K Cinematic Highlight Film</li>
+        <li>Private Online Gallery</li>
+        <li>Heirloom Photo Album</li>
+        <li>10-Day Turnaround</li>
+      </ul>
+      <a href="#contact" class="pkg-cta">Book Gold</a>
+    </div>
+    <div class="pkg">
+      <div class="pkg-name">Platinum</div>
+      <div class="pkg-tagline">Full luxury, no limits</div>
+      <div class="pkg-price">₹1,50,000</div>
+      <div class="pkg-price-note">Starting price · Fully custom</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li>3-Day Full Event Coverage</li>
+        <li>3 Photographers + Drone Team</li>
+        <li>Unlimited Edited Photos</li>
+        <li>Full 4K Film (20+ min)</li>
+        <li>HD Live Streaming</li>
+        <li>2x Heirloom Albums</li>
+        <li>Priority 7-Day Turnaround</li>
+        <li>Dedicated Project Manager</li>
+      </ul>
+      <a href="#contact" class="pkg-cta">Book Platinum</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="contact-wrap">
+    <div class="contact-left r">
+      <div class="sec-label">Get In Touch</div>
+      <h2 class="sec-title">LET'S<br>BUILD<br><span class="ghost">YOURS.</span></h2>
+      <div class="c-items">
+        <div class="c-item"><div class="c-ic"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg></div><div><div class="c-lbl">Call / WhatsApp</div><div class="c-val">+91 98765 43210</div></div></div>
+        <div class="c-item"><div class="c-ic"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val">hello@vannamdigital.studio</div></div></div>
+        <div class="c-item"><div class="c-ic"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="c-lbl">Studio</div><div class="c-val">Ponnamaravathy, Tamil Nadu</div></div></div>
+      </div>
+      <div class="social-row">
+        <a href="#" class="soc">IG</a><a href="#" class="soc">YT</a><a href="#" class="soc">FB</a><a href="#" class="soc">WA</a>
+      </div>
+    </div>
+    <div class="r">
+      <div class="cform">
+        <div class="cform-row">
+          <div class="fg"><label class="flbl">Your Name</label><input class="fi" placeholder="Your full name"/></div>
+          <div class="fg"><label class="flbl">Partner's Name</label><input class="fi" placeholder="Partner's name"/></div>
+        </div>
+        <div class="cform-row">
+          <div class="fg"><label class="flbl">Phone / WhatsApp</label><input class="fi" placeholder="+91 xxxxx xxxxx"/></div>
+          <div class="fg"><label class="flbl">Email</label><input class="fi" type="email" placeholder="you@email.com"/></div>
+        </div>
+        <div class="cform-row">
+          <div class="fg"><label class="flbl">Wedding Date</label><input class="fi" type="date"/></div>
+          <div class="fg"><label class="flbl">Venue / City</label><input class="fi" placeholder="Venue or city"/></div>
+        </div>
+        <div class="fg">
+          <label class="flbl">Package</label>
+          <select class="fsel">
+            <option disabled selected value="">Select a package…</option>
+            <option>Silver — Photography Only</option>
+            <option>Gold — Photo + Drone + Film</option>
+            <option>Platinum — Full Luxury Coverage</option>
+            <option>Pre-Wedding Shoot</option>
+            <option>Live Streaming Only</option>
+            <option>Custom — Let's Discuss</option>
+          </select>
+        </div>
+        <div class="fg"><label class="flbl">Tell Us Your Vision</label><textarea class="fta" placeholder="Venue details, style, must-have shots, anything special…"></textarea></div>
+        <button class="fsub" id="fsub">Send Enquiry →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand r">
+      <div class="foot-logo-big"><span class="fldb"></span>VANNAM DIGITALS STUDIO</div>
+      <p>Premium wedding photography & drone cinematography. Based in Chennai, shooting across Tamil Nadu, India and beyond.</p>
+      <div class="foot-social">
+        <a href="#" class="foot-soc">IG</a><a href="#" class="foot-soc">YT</a><a href="#" class="foot-soc">FB</a><a href="#" class="foot-soc">WA</a>
+      </div>
+    </div>
+    <div class="foot-col r d1">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Wedding Photography</a></li>
+        <li><a href="#services">Drone Cinematography</a></li>
+        <li><a href="#services">Cinematic Video</a></li>
+        <li><a href="#services">Pre-Wedding Shoot</a></li>
+        <li><a href="#services">Live Streaming</a></li>
+        <li><a href="#services">Photo Albums</a></li>
+      </ul>
+    </div>
+    <div class="foot-col r d2">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#work">Portfolio</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-col r d3">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+        <li><a href="mailto:hello@vannamdigital.studio">hello@vannamdigital.studio</a></li>
+        <li><a href="#">Ponnamaravathy, Tamil Nadu</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Vannam Digital Studio · All Rights Reserved</span>
+    <span>"Captured from every height."</span>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const c=document.getElementById('c'),cr=document.getElementById('cr');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function tick(){
+  c.style.left=mx+'px';c.style.top=my+'px';
+  rx+=(mx-rx)*.15;ry+=(my-ry)*.15;
+  cr.style.left=rx+'px';cr.style.top=ry+'px';
+  requestAnimationFrame(tick);
+})();
+
+// Loader
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    const l=document.getElementById('loader');
+    l.style.transition='opacity .7s';
+    l.style.opacity='0';
+    setTimeout(()=>l.style.display='none',700);
+  },2600);
+});
+
+// Nav
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>60));
+
+// Reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('on'),i*65);obs.unobserve(e.target);}
+  });
+},{threshold:.08});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+
+// Animated stats
+function animNum(el,target){
+  let s=null;
+  (function step(ts){
+    if(!s)s=ts;
+    const p=Math.min((ts-s)/1800,1);
+    const ease=1-Math.pow(1-p,3);
+    el.textContent=Math.round(ease*target);
+    if(p<1)requestAnimationFrame(step);
+  })(performance.now());
+}
+const sObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      animNum(document.getElementById('s1'),600);
+      animNum(document.getElementById('s2'),2500);
+      animNum(document.getElementById('s3'),400);
+      animNum(document.getElementById('s4'),99);
+      sObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+const stats=document.querySelector('.stats');
+if(stats)sObs.observe(stats);
+
+document.getElementById('fsub').addEventListener('click',()=>{
+  alert('Thank you! Vannam Digital Studio will reach out within 24 hours. 📸');
+});
+</script>
+</body>
+</html>
